@@ -25,7 +25,7 @@ The project is designed to be **self-setting**.
 
 ## Project Structure
 
-```
+```text
 IHLT_Final_Project/
 │
 ├── train/                        # Training Data Folder
@@ -39,28 +39,27 @@ IHLT_Final_Project/
 │   ├── STS.input.surprise.OnWN.txt
 │   └── ... (all 5 datasets)
 │
+├── src/                          # Source Code Modules
+│   ├── data_loader.py            # Handles loading training/test datasets
+│   ├── features.py               # Feature extraction engine (WordNet, spaCy)
+│   ├── models.py                 # Machine Learning pipelines (Ridge, SVR, RF)
+│   └── eval_utils.py             # Helper functions for evaluation
+│
+├── output/                       # Generated Prediction Files
+│   └── STS.output.MSRpar.mySystem.txt
+│
 ├── sts-ZoeFinelli-OnatBitirgen.ipynb  # MAIN NOTEBOOK (Run this first)
 ├── evaluate.sh                   # EVALUATION SCRIPT (Run this second)
 ├── correlation.pl                # Perl Evaluation Script (Helper)
-│
-├── data_loader.py                # Python Module: Loads data
-├── features.py                   # Python Module: Feature Engineering
-├── models.py                     # Python Module: Machine Learning models
-├── eval_utils.py                 # Python Module: Calc helper
-│
 ├── requirements.txt              # Dependency list
 └── README.md                     # Documentation
 ```
 
-* sts-ZoeFinelli-OnatBitirgen.ipynb: The main notebook. It trains the models, performs feature analysis, and generates predictions.
-
-* features.py: The feature extraction engine (contains WordNet, spaCy, and Lexical logic).
-
-* models.py: Contains the Machine Learning pipelines (Ridge, SVR, Random Forest).
-
-* data_loader.py: Handles loading training and test datasets (including "surprise" datasets).
-
-* evaluate.sh: A shell script that automates the official Perl evaluation script.
+* **`sts-ZoeFinelli-OnatBitirgen.ipynb`**: The main notebook. It trains the models, performs feature analysis, and generates predictions.
+* **`src/features.py`**: The feature extraction engine (contains WordNet, spaCy, and Lexical logic).
+* **`src/models.py`**: Contains the Machine Learning pipelines (Ridge, SVR, Random Forest).
+* **`src/data_loader.py`**: Handles loading training and test datasets (including "surprise" datasets).
+* **`evaluate.sh`**: A shell script that automates the official Perl evaluation script.
 
 ## How to Run
 
@@ -79,6 +78,7 @@ Once the notebook finishes, run the evaluation script in your terminal to get th
 
 ```bash
 ./evaluate.sh
+```
 
 ## Performance
 
