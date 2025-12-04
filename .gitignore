@@ -1,0 +1,20 @@
+# --- Python ---
+__pycache__/
+*.pyc
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints/
+
+# --- Mac OS ---
+.DS_Store
+
+# --- Environments ---
+# (Ignores your local virtual environment folder)
+IHLT-env/
+venv/
+env/
+.env
+
+# --- Optional: Generated Output ---
+# Uncomment the line below if you DON'T want to track the output text files
+# output/
