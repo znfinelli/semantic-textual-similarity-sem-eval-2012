@@ -1,4 +1,5 @@
-# SemEval 2012 Task 6: Semantic Textual Similarity (STS)
+# IHLT Final Project
+## SemEval 2012 Task 6: Semantic Textual Similarity (STS)
 
 **Course:** Introduction to Human Language Technology (IHLT)  
 **Task:** Measure the degree of semantic equivalence between two sentences (0-5 scale).
@@ -26,41 +27,47 @@ The project is designed to be **self-setting**.
 ## Project Structure
 
 ```
+## Project Structure
+
+```text
 IHLT_Final_Project/
 │
 ├── train/                        # Training Data Folder
 │   ├── STS.input.MSRpar.txt
 │   ├── STS.gs.MSRpar.txt
-│   └── ... (other train files)
+│   └── ... 
 │
 ├── test-gold/                    # Test Data Folder (Inputs + Gold)
 │   ├── STS.input.MSRpar.txt
 │   ├── STS.gs.MSRpar.txt
-│   ├── STS.input.surprise.OnWN.txt
-│   └── ... (all 5 datasets)
+│   └── ... 
 │
-├── sts-ZoeFinelli-OnatBitirgen.ipynb  # MAIN NOTEBOOK (Run this first)
-├── evaluate.sh                   # EVALUATION SCRIPT (Run this second)
-├── correlation.pl                # Perl Evaluation Script (Helper)
+├── src/                          # Python Source Modules
+│   ├── data_loader.py            # Handles loading training and test datasets
+│   ├── eval_utils.py             # Pearson correlation calculation
+│   ├── features.py               # Feature extraction (Lexical, WordNet, spaCy)
+│   └── models.py                 # ML Pipelines (Ridge, SVR, Random Forest)
 │
-├── data_loader.py                # Python Module: Loads data
-├── features.py                   # Python Module: Feature Engineering
-├── models.py                     # Python Module: Machine Learning models
-├── eval_utils.py                 # Python Module: Calc helper
+├── output/                       # (Generated) System Predictions
+│   ├── STS.output.MSRpar.mySystem.txt
+│   └── ... (Created after running the notebook)
 │
-├── requirements.txt              # Dependency list
-└── README.md                     # Documentation
+├── sts-ZoeFinelli-OnatBitirgen.ipynb  # MAIN NOTEBOOK (Entry Point)
+├── evaluate.sh                   # Evaluation Shell Script
+├── correlation.pl                # Official Perl Evaluation Helper
+├── requirements.txt              # Project dependencies
+└── README.md                     # Project Documentation
 ```
 
-* sts-ZoeFinelli-OnatBitirgen.ipynb: The main notebook. It trains the models, performs feature analysis, and generates predictions.
+* `sts-ZoeFinelli-OnatBitirgen.ipynb`: The main notebook. It trains the models, performs feature analysis, and generates predictions.
 
-* features.py: The feature extraction engine (contains WordNet, spaCy, and Lexical logic).
+* `features.py`: The feature extraction engine (contains WordNet, spaCy, and Lexical logic).
 
-* models.py: Contains the Machine Learning pipelines (Ridge, SVR, Random Forest).
+* `models.py`: Contains the Machine Learning pipelines (Ridge, SVR, Random Forest).
 
-* data_loader.py: Handles loading training and test datasets (including "surprise" datasets).
+* `data_loader.py`: Handles loading training and test datasets (including "surprise" datasets).
 
-* evaluate.sh: A shell script that automates the official Perl evaluation script.
+* `evaluate.sh`: A shell script that automates the official Perl evaluation script.
 
 ## How to Run
 
@@ -79,17 +86,19 @@ Once the notebook finishes, run the evaluation script in your terminal to get th
 
 ```bash
 ./evaluate.sh
-
+```
 ## Performance
 
 Our "Combined Model" (Ensemble) achieves the following Pearson Correlations ($r$):
 
 | Dataset | Pearson ($r$) |
 | :--- | :--- |
-| **MSRvid** | **0.835** |
-| **OnWN** | **0.665** |
-| **MSRpar** | **0.661** |
-| **SMTnews** | 0.438 |
-| **SMTeuroparl**| 0.422 |
+| **MSRvid** | `0.833` |
+| **OnWN** | `0.663` |
+| **MSRpar** | `0.661` |
+| **SMTnews** | `0.434` |
+| **SMTeuroparl**| `0.448` |
 
-*Note: MSRpar performance was significantly boosted by adding negation, number matching, and LCS features.*
+**Final Macro-Average Pearson:** `0.60794`
+
+>*Note: MSRpar performance was significantly boosted by adding negation, number matching, and LCS features.*
