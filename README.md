@@ -93,11 +93,11 @@ Our "Combined Model" (Ensemble) achieves the following Pearson Correlations ($r$
 
 | Dataset | Pearson ($r$) |
 | :--- | :--- |
-| **MSRvid** | `0.833` |
-| **OnWN** | `0.663` |
 | **MSRpar** | `0.661` |
-| **SMTnews** | `0.434` |
+| **MSRvid** | `0.833` |
 | **SMTeuroparl**| `0.448` |
+| **OnWN** | `0.663` |
+| **SMTnews** | `0.434` |
 
 **Final Macro-Average Pearson:** `0.60794`
 
