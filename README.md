@@ -101,6 +101,8 @@ Our "Combined Model" (Ensemble) achieves the following Pearson Correlations ($r$
 
 **Final Macro-Average Pearson:** `0.60794`
 
+**Official Pooled ALL Pearson:** `0.75073`
+
 >*Note: MSRpar performance was significantly boosted by adding negation, number matching, and LCS features.*
 
 ## References

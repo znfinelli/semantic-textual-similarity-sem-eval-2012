@@ -35,7 +35,7 @@ def setup_resources():
     Ensures reproducibility across different environments without manual setup.
     """
     print("--- Checking and Downloading Resources ---")
-    resources = ['punkt', 'punkt_tab', 'averaged_perceptron_tagger', 
+    resources = ['punkt', 'punkt_tab', 'averaged_perceptron_tagger_eng',
                  'wordnet', 'omw-1.4', 'stopwords']
     for res in resources:
         try:

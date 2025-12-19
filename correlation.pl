@@ -4,8 +4,6 @@
 # 
 #   correlation.pl GS system
 #
-#      FIXES BUG IN FIRST RELEASE
-# 
 #   Note: the GS file and system files need to have the same number of
 #         lines
 #
