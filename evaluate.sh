@@ -10,7 +10,7 @@ total_score=0
 count=0
 
 echo "=========================================="
-echo "       RUNNING SEMEVAL EVALUATION         "
+echo "       RUNNING MACRO EVALUATION         "
 echo "=========================================="
 
 for set in "${datasets[@]}"
@@ -61,3 +61,46 @@ else
 fi
 
 echo "=========================================="
+
+echo ""
+echo "=========================================="
+echo "        OFFICIAL POOLED EVALUATION        "
+echo "=========================================="
+
+# 1. Initialize empty combined files
+> STS.gs.ALL.txt
+> STS.output.ALL.txt
+
+# 2. Concatenate all datasets into the ALL files
+for set in "${datasets[@]}"
+do
+    # Re-locate the Gold Standard file (checking for 'surprise' variant again)
+    if [ -f "test-gold/STS.gs.${set}.txt" ]; then
+        GS_FILE="test-gold/STS.gs.${set}.txt"
+    elif [ -f "test-gold/STS.gs.surprise.${set}.txt" ]; then
+        GS_FILE="test-gold/STS.gs.surprise.${set}.txt"
+    else
+        GS_FILE="NOT_FOUND"
+    fi
+
+    SYS_FILE="output/STS.output.${set}.mySystem.txt"
+
+    # If both files exist, append their contents to the ALL files
+    if [[ "$GS_FILE" != "NOT_FOUND" && -f "$SYS_FILE" ]]; then
+        cat "$GS_FILE" >> STS.gs.ALL.txt
+        cat "$SYS_FILE" >> STS.output.ALL.txt
+    fi
+done
+
+# 3. Run the official Perl script on the combined files
+if [ -s STS.gs.ALL.txt ] && [ -s STS.output.ALL.txt ]; then
+    RAW_OUTPUT_ALL=$(perl correlation.pl STS.gs.ALL.txt STS.output.ALL.txt)
+    SCORE_ALL=$(echo "$RAW_OUTPUT_ALL" | grep -oE '[0-9]+\.[0-9]+')
+    echo "Pooled ALL Pearson: $SCORE_ALL"
+else
+    echo "Could not calculate Pooled Average (files missing)."
+fi
+
+echo "=========================================="
+# Optional: Remove temporary combined files
+rm STS.gs.ALL.txt STS.output.ALL.txt
