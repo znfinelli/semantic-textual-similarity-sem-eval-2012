@@ -104,3 +104,15 @@ Our "Combined Model" (Ensemble) achieves the following Pearson Correlations ($r$
 **Official Pooled ALL Pearson:** `0.75073`
 
 >*Note: MSRpar performance was significantly boosted by adding negation, number matching, and LCS features.*
+
+## References
+
+[1] D. Bär, C. Biemann, I. Gurevych, and T. Zesch, "UKP: Computing Semantic
+Textual Similarity by Combining Multiple Content Similarity Measures," in
+*Proceedings of the First Joint Conference on Lexical and Computational
+Semantics (SEM 2012), Montréal, Canada, 2012, pp. 435–440.
+
+[2] F. Šarić, G. Glavaš, M. Karan, J. Šnajder, and B. Dalbelo Bašić, "TakeLab:
+Systems for Measuring Semantic Text Similarity," in *Proceedings of the First Joint
+Conference on Lexical and Computational Semantics (SEM 2012), Montréal,
+Canada, 2012, pp. 441–448.
